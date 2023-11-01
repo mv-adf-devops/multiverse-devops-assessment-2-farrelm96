@@ -1,0 +1,26 @@
+{
+    "name": "terraform-codespaces",
+    "image": "mcr.microsoft.com/devcontainers/python:0-3.11",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python"
+			]
+		}
+	},
+    "extensions": [
+      "HashiCorp.terraform"
+    ],
+	"features": {
+		"ghcr.io/devcontainers/features/aws-cli:1": {
+			"version": "latest"
+		},
+        "ghcr.io/devcontainers/features/terraform:1": {
+            "version": "latest", 
+            "installTFsec": true
+        },
+		"ghcr.io/devcontainers/features/python:1": {
+			
+		}
+	}
+}
