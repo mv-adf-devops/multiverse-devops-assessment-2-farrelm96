@@ -29,5 +29,17 @@ def remove_duplicates(filename):
 def remove_blank_rows(filename):
     return [row for row in filename if any(cell.strip() for cell in row)]
 
+def capitalize_user_names(filename):
+    header = filename[0]
+    first_name_index = header.index('first_name')
+    last_name_index = header.index('last_name')
+
+    for row in filename[1:]:
+        if row[first_name_index]:
+            row[first_name_index] = row[first_name_index].capitalize()
+        if row[last_name_index]:
+            row[last_name_index] = row[last_name_index].capitalize()
+    return filename
+
 
     

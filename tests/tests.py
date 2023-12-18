@@ -1,4 +1,4 @@
-from extract import read_csv, remove_duplicates, remove_blank_rows
+from extract import read_csv, remove_duplicates, remove_blank_rows, capitalize_user_names
 
 """
 ● The results.csv data file can be successfully processed into an array.
@@ -74,5 +74,32 @@ def test_remove_blank_rows():
 
     # Assert that the result matches the expected result
     assert result == expected_result
+
+def test_capitalize_user_names():
+    # Example dataset with lowercase names
+    filename="results.csv"
+
+    dataset_with_lowercase_names = read_csv(filename)
+
+    # Manually capitalize names to create the expected result
+    expected_result = [dataset_with_lowercase_names[0]]  # Copy the header
+
+    for row in dataset_with_lowercase_names[1:]:
+        capitalized_row = [row[0]]  # Copy the user_id
+
+        # Capitalize first_name and last_name, if present
+        for cell in row[1:3]:
+            capitalized_row.append(cell.capitalize() if cell else '')
+
+        # Copy the remaining columns
+        capitalized_row.extend(row[3:])
+        expected_result.append(capitalized_row)
+
+    # Call the capitalise_user_names function
+    result = capitalize_user_names(dataset_with_lowercase_names)
+
+    # Assert that the result matches the expected result
+    assert result == expected_result
+
 
 
