@@ -1,4 +1,4 @@
-from extract import read_csv, remove_duplicates, remove_blank_rows, capitalize_user_names
+from extract import read_csv, remove_duplicates, remove_blank_rows, capitalize_user_names, remove_invalid_answer_3
 
 """
 ● The results.csv data file can be successfully processed into an array.
@@ -101,5 +101,19 @@ def test_capitalize_user_names():
     # Assert that the result matches the expected result
     assert result == expected_result
 
+def test_remove_invalid_answer_3():
+    # Example dataset with values outside the range in the "answer_3" column
+    filename= "results.csv"
+    dataset_with_invalid_answer_3 = read_csv(filename)
 
+    # Manually filter rows to create the expected result
+    expected_result = [
+        row for row in dataset_with_invalid_answer_3[1:]
+        if row[5].isdigit() and 1 <= int(row[5]) <= 10
+    ]
+    # Call the remove_invalid_answer_3 function
+    result = remove_invalid_answer_3(dataset_with_invalid_answer_3)
+
+    # Assert that the result matches the expected result
+    assert result == expected_result
 
