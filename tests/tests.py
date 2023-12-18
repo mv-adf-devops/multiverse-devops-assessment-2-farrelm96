@@ -1,4 +1,4 @@
-from extract import read_csv, remove_duplicates
+from extract import read_csv, remove_duplicates, remove_blank_rows
 
 """
 ● The results.csv data file can be successfully processed into an array.
@@ -55,6 +55,22 @@ def test_remove_duplicates():
 
     # Call the remove_duplicates function
     result = remove_duplicates(dataset_with_duplicates)
+
+    # Assert that the result matches the expected result
+    assert result == expected_result
+
+def test_remove_blank_rows():
+    # Example dataset with blank rows
+    filename= "results.csv"
+
+    # Manually remove blank rows to create the expected result
+    expected_result = [filename[0]]  # Copy the header
+    for row in filename[1:]:
+        if any(cell.strip() for cell in row):
+            expected_result.append(row)
+
+    # Call the remove_blank_rows function
+    result = remove_blank_rows(filename)
 
     # Assert that the result matches the expected result
     assert result == expected_result

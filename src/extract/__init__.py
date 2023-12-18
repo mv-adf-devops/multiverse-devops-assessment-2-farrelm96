@@ -26,5 +26,8 @@ def remove_duplicates(filename):
     
     return unique_dataset
 
+def remove_blank_rows(filename):
+    return [row for row in filename if any(cell.strip() for cell in row)]
+
 
     
