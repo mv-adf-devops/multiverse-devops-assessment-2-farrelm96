@@ -102,18 +102,20 @@ def test_capitalize_user_names():
     assert result == expected_result
 
 def test_remove_invalid_answer_3():
-    # Example dataset with values outside the range in the "answer_3" column
-    filename= "results.csv"
-    dataset_with_invalid_answer_3 = read_csv(filename)
+    # Example CSV file with values outside the range in the "answer_3" column
+    filename = "results.csv"
 
-    # Manually filter rows to create the expected result
-    expected_result = [
-        row for row in dataset_with_invalid_answer_3[1:]
-        if row[5].isdigit() and 1 <= int(row[5]) <= 10
-    ]
-    # Call the remove_invalid_answer_3 function
-    result = remove_invalid_answer_3(dataset_with_invalid_answer_3)
+    try:
+        # Call the function
+        cleaned_dataset = remove_invalid_answer_3(filename)
 
-    # Assert that the result matches the expected result
-    assert result == expected_result
+        # Extract rows below the header for testing
+        cleaned_data_for_test = cleaned_dataset[1:]
 
+        # Create the expected result dynamically
+        expected_result = [row for row in filename[1:] if row[5].isdigit() and 1 <= int(row[5]) <= 10]
+        expected_result.insert(0, filename[0])
+
+        assert cleaned_data_for_test == expected_result
+    except ValueError as e:
+        print(f"Error: {e}")

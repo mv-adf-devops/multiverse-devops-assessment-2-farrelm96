@@ -47,8 +47,10 @@ def remove_invalid_answer_3(filename):
 
     # Filter rows where answer_3 is within the range [1, 10]
     filtered_dataset = [row for row in filename if row[answer_3_index].isdigit() and 1 <= int(row[answer_3_index]) <= 10]
+    cleaned_dataset = [header]+ filtered_dataset
 
-    return filtered_dataset
+    return cleaned_dataset
+
 
 
 
