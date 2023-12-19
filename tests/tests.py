@@ -39,7 +39,7 @@ def test_first_row_is_correct():
     # test_your_module.py
 
 def test_remove_duplicates():
-    # Example dataset with duplicates
+    # dataset with duplicates
     filename="results.csv"
     dataset_with_duplicates = read_csv(filename)
 
