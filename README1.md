@@ -1,0 +1,2 @@
+# What does this code do?
+This code is used to transform survey data. The code reades an inputted file, then removes duplicates based on the User Id field, keeping the first entry. Then empty lines are removed and first and last names are capitalised. Next invalid responses to the third answer field are removed, in this instance where the answer is out side the range of 1-10. the code then writes the result of these transformation steps into a file called clean_results.csv
