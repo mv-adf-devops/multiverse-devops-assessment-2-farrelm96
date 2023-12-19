@@ -120,3 +120,27 @@ def test_remove_invalid_answer_3():
     except ValueError as e:
         print(f"Error: {e}")
 
+def test_write_to_file():
+    # Sample dataset
+    sample_dataset = [
+        ["Name", "Age", "City"],
+        ["John Doe", "30", "New York"],
+        ["Jane Doe", "25", "San Francisco"],
+        ["Bob Smith", "35", "Los Angeles"]
+    ]
+
+    # Temporary output file path
+    sample_output_file = "outputsample.csv"
+
+    # Call the function with the sample dataset
+    write_to_file(sample_dataset, sample_output_file)
+
+    # Read the content of the file
+    with open(sample_output_file, 'r') as file:
+        written_content = file.readlines()
+
+    # Assertions
+    assert written_content[0].strip() == "Name,Age,City"
+
+    for expected_row, written_row in zip(sample_dataset[1:], written_content[1:]):
+        assert written_row.strip() == ','.join(expected_row)
