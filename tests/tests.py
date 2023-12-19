@@ -1,4 +1,4 @@
-from extract import read_csv, remove_duplicates, remove_blank_rows, capitalize_user_names, remove_invalid_answer_3
+from extract import read_csv, remove_duplicates, remove_blank_rows, capitalize_user_names, remove_invalid_answer_3, write_to_file
 
 """
 ● The results.csv data file can be successfully processed into an array.
@@ -119,3 +119,4 @@ def test_remove_invalid_answer_3():
         assert cleaned_data_for_test == expected_result
     except ValueError as e:
         print(f"Error: {e}")
+
