@@ -52,3 +52,6 @@ def write_to_file(dataset, output_file):
         # Write the data rows
         for row in dataset[1:]:
             file.write(','.join(row) + '\n')
+
+def print_formatted_row(row):
+        formatted_row = '\t'.join(str(cell).ljust(15) for cell in row)
